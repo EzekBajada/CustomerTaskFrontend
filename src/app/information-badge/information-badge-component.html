@@ -1,6 +1,6 @@
-<div class="banner">
+<div class="banner" *ngIf = "hide">
     <img src="{{ imageSrc }}" class="banner-image">
-   <div id = "banner-line-one"><span > {{fullname}} </span> <i class="fa fas fa-trash" id ="trash-icon"></i></div> 
+   <div id = "banner-line-one"><span > {{fullname}} </span> <a href="#"> <i class="fa fas fa-trash" id ="trash-icon" (click)="onClickIcon()"></i> </a> </div> 
      <br> 
    <div id="banner-line-two">  <span> {{position}} at Thynk Software </span></div> 
 </div>

@@ -28,14 +28,14 @@ export class CustomersService
     // EDIT an existing customer
     EditCustomer(customer: Customer): Observable<Customer>
     {
-        const url = environment.apiURL + '/api/EditCustomers'
+        const url = environment.apiURL + '/EditCustomers'
         return this.httpClient.post(url, customer)
     }
 
     // DELETE an existing customer
     DeleteCustomer(id: number) : Observable<Customer>
     {
-        const url = environment.apiURL + '/api/DeleteCustomers/' + id
+        const url = environment.apiURL + '/DeleteCustomers/' + id
         return this.httpClient.get(url)
     }
 }
