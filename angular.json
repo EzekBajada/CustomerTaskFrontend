@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "customer-task"
+    }
+  },
+  "defaultProject": "customer-task",
+  "cli": {
+    "analytics": false
+  }
 }
