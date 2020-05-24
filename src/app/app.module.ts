@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app.routing.module'
 import { AppComponent } from './customer-page/app.component';
 import { InformationBadgeComponent } from './information-badge/information-badge-component' 
 import { CustomerDetailsComponent } from './customer-details-page/customer-details-component' 
+import { EditDetailsComponent } from './edit-details-page/edit-details-component'
 
 @NgModule({
   declarations: [
     AppComponent,
     InformationBadgeComponent,
-    CustomerDetailsComponent
+    CustomerDetailsComponent,
+    EditDetailsComponent
   ],
   imports: [
     BrowserModule,

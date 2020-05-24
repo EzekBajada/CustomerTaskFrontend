@@ -1,0 +1,19 @@
+<div class = "details">
+    <div id="customer-details">
+        <div id="top-details">
+            <div id="edit-delete-icons"><span><a href="#"><i class="fa far fa-save" id="edit-icon" (click) = "editCustomerDetails(firstNameInput,positionInput,countryInput,activityInput)"></i></a></span><span> <i class="fa fas fa-trash" id = "edit-icon"></i> </span></div>
+            <label for="image">
+                <input type="file" name="image" id="image" style="display:none;"/>
+                <img src="{{imageSrc}}" class="details-images"/>
+            </label>
+            <br>
+            <input  type="text" id="fullname-details-input" placeholder="{{fullname}}" #firstNameInput>
+            <br>
+            <input type="text" id="fullname-details-input" placeholder="{{position}}" #positionInput>
+            <h3 id="heading-details">Country</h3>
+            <input type="text" id="country-details-input" placeholder="{{country}}" #countryInput>
+            <h3 id="heading-details">Activity</h3>
+            <input type="text" id="country-details-input" placeholder="{{activity}}" #activityInput>
+        </div> 
+    </div>
+</div>

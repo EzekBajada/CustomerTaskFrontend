@@ -4,8 +4,13 @@
     border-radius: 50%;
     float: left;
 }
+.banner {
+    vertical-align: center
+    ;
+}
 
 #banner-line-one {
+    font-size: 25px;
     font-weight: 800;
     margin-left: 7%;
     width: 40%;
@@ -13,6 +18,7 @@
 
 #banner-line-two {
     margin-left: 7%;
+    margin-top: -2%;
 }
 
 #trash-icon {
@@ -36,6 +42,11 @@
     height: 100px;
 }
 
+.details-images:hover {
+    opacity: 50%;
+    cursor: pointer;
+}
+
 #customer-details {
     text-align: center;
 }
@@ -57,14 +68,24 @@
 
 #heading-details {
     padding:1%;
+    margin-bottom: -1%;
 }
 
 #edit-delete-icons {
     padding-bottom: 20px;
     padding-left: 40%;
+    font-size: 25px;
 }
 
 #edit-icon {
     padding-right: 10px;
     color: greenyellow;
+}
+
+#fullname-details-input {
+    margin-top: 2%;
+}
+
+#country-details-input {
+    margin-top: 1%;
 }
