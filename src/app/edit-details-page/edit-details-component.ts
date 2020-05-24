@@ -19,6 +19,7 @@ export class EditDetailsComponent implements OnInit
     activity: string;
 
     @Output() statusOfEdit = new EventEmitter<boolean>();
+    @Output() statusOfDelete = new EventEmitter<boolean>();
     ngOnInit() { 
         this.imageSrc = './assets/images/apply_soap_hands_wash_clean_icon_143150 (1).ico'
         this.fullname = 'not defined yet'
@@ -49,4 +50,17 @@ export class EditDetailsComponent implements OnInit
             }
         )
     }
+
+  onClickTrashIcon()
+  {
+    this.customerService.DeleteCustomer(this.ID)
+    .subscribe(
+      (data) => {
+        this.statusOfEdit.emit(true);
+      },
+      (error) => {
+        this.statusOfEdit.emit(false);
+      }
+      );
+  }
 }

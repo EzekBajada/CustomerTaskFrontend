@@ -1,7 +1,9 @@
 <div class = "details">
     <div id="customer-details">
         <div id="top-details">
-            <div id="edit-delete-icons"><span><a href="#"><i class="fa far fa-save" id="edit-icon" (click) = "editCustomerDetails(firstNameInput,positionInput,countryInput,activityInput)"></i></a></span><span> <i class="fa fas fa-trash" id = "edit-icon"></i> </span></div>
+            <div id="edit-delete-icons">
+                <span><a href="#"><i class="fa far fa-save" id="edit-icon" (click) = "editCustomerDetails(firstNameInput,positionInput,countryInput,activityInput)"></i></a></span>
+                <span><a href="#"><i class="fa fas fa-trash" id="edit-icon" (click) = "onClickTrashIcon()"></i></a> </span></div>
             <label for="image">
                 <input type="file" name="image" id="image" style="display:none;"/>
                 <img src="{{imageSrc}}" class="details-images"/>
