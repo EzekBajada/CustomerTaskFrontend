@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+.banner-image {
+    height: 50px;
+    border-radius: 50%;
+    float: left;
+}
+
+#banner-line-one {
+    font-weight: 800;
+    margin-left: 7%;
+    width: 40%;
+}
+
+#banner-line-two {
+    margin-left: 7%;
+}
+
+#trash-icon {
+    float: right;    
+    opacity: 70%;
+}   

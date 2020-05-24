@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomersService } from '../services/customers-service'
 import { Customer } from '../models/customers-model'
-import { Observable, throwError } from 'rxjs';
-
+import { InformationBadgeComponent } from '../information-badge/information-badge-component'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
