@@ -18,6 +18,7 @@
 #trash-icon {
     float: right;    
     opacity: 70%;
+    color: greenyellow;
 }   
 
 #select-notice {
@@ -56,4 +57,14 @@
 
 #heading-details {
     padding:1%;
+}
+
+#edit-delete-icons {
+    padding-bottom: 20px;
+    padding-left: 40%;
+}
+
+#edit-icon {
+    padding-right: 10px;
+    color: greenyellow;
 }
