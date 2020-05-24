@@ -1,0 +1,17 @@
+<div class = "details">
+    <div id="notice-container" *ngIf = "!hide">
+        <h1 id="select-notice"> Please select a customer to view details</h1>
+    </div>
+
+    <div id="customer-details" *ngIf = "hide">
+        <div id="top-details">
+            <img src = "{{imageSrc}}" class="details-images">
+            <h1 id="fullname-details"> {{fullname}} </h1> 
+            <h2 id="position-details"> {{position}} </h2>
+            <h3 id="heading-details">Country</h3>
+            <h3 id="sub-heading-details">{{country}}</h3>
+            <h3 id="heading-details">Activity</h3>
+            <h3 id="sub-heading-details">{{activity}}</h3>
+        </div> 
+    </div>
+</div>

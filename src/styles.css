@@ -19,3 +19,41 @@
     float: right;    
     opacity: 70%;
 }   
+
+#select-notice {
+    opacity: 50%;
+}
+
+#notice-container {
+    text-align: center;
+}
+
+.details-images {
+    border-style: solid;
+    border-color: coral;
+    border-radius: 50%;
+    height: 100px;
+}
+
+#customer-details {
+    text-align: center;
+}
+
+#fullname-details {
+    color: green;
+    margin: 1%;
+}
+
+#position-details {
+    opacity: 75%;
+    margin: 1%;
+}
+
+#sub-heading-details {
+    margin:-2%;
+    opacity: 75%;
+}
+
+#heading-details {
+    padding:1%;
+}

@@ -4,8 +4,7 @@ import { Customer } from '../models/customers-model'
 import { InformationBadgeComponent } from '../information-badge/information-badge-component'
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit
 {
