@@ -52,6 +52,7 @@ export class AppComponent implements OnInit
     this.customerService.GetCustomer($event).subscribe(
       (data) =>
       {
+        this.customerId = data['id'] 
         this.fullName = data['fullName']
         this.position = data['position']
         switch(data['country'])
@@ -83,4 +84,14 @@ export class AppComponent implements OnInit
       this.detailsView = 0
     }
   }
+
+  onTriggerEdit($event)
+  {
+    if($event)
+    {
+      this.detailsView = 2
+    }
+    console.log(this.fullName);
+  }
+
 } 

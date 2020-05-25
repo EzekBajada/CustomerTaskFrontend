@@ -83,16 +83,19 @@
 }
 
 #edit-delete-icons {
+    padding-top: 2%;
     padding-bottom: 20px;
     padding-left: 40%;
     font-size: 25px;
 }
 
 #edit-icon {
-    padding-right: 10px;
+    padding-right: 3%;
     color: greenyellow;
 }
-
+#edit-icon:hover{
+    cursor: pointer;
+}
 #fullname-details-input {
     margin-top: 2%;
 }
