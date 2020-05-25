@@ -28,8 +28,9 @@ export class EditDetailsComponent implements OnInit
         this.activity = 'Active'
     }
 
-    editCustomerDetails(fullname: string, position: string, country: string, activity: boolean)
+    editCustomerDetails(fullname: any, position: any, country: any, activity: any)
     {
+        console.log(fullname.value, position.value, country.value, activity.value)
         let countryId;
         switch(country)
         {
@@ -38,7 +39,7 @@ export class EditDetailsComponent implements OnInit
             case 'Italy': countryId = 2; break;
             case 'Greece': countryId = 3; break;
         }
-        let customer = new Customer (this.ID, fullname, position, countryId, activity);
+        let customer = new Customer (this.ID, fullname.value, position.value, countryId.value, activity.value);
         this.customerService.EditCustomer(customer).subscribe(
             (data) =>
             {

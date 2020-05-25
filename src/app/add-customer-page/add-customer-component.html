@@ -1,0 +1,21 @@
+<div class = "details">
+    <div id="customer-details">
+        <div id="top-details">
+            <div id="edit-delete-icons">
+                <span><a href="#"><i class="fa far fa-save" id="edit-icon" (click) = "addCustomerDetails(firstNameInput,positionInput,countryInput,activityInput)"></i></a></span>
+                <span><a href="#"><i class="fa fas fa-trash" id="edit-icon" (click) = "onClickTrashIcon(firstNameInput, positionInput, countryInput, activityInput)"></i></a> </span></div>
+            <label for="image">
+                <input type="file" name="image" id="image" style="display:none;"/>
+                <img src="{{imageSrc}}" class="details-images"/>
+            </label>
+            <br>
+            <input  type="text" id="fullname-details-input" #firstNameInput>
+            <br>
+            <input type="text" id="fullname-details-input" #positionInput>
+            <h3 id="heading-details">Country</h3>
+            <input type="text" id="country-details-input" #countryInput>
+            <h3 id="heading-details">Activity</h3>
+            <input type="text" id="country-details-input" #activityInput>
+        </div> 
+    </div>
+</div>
