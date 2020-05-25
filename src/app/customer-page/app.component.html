@@ -8,7 +8,7 @@
         <information-badge  [customers] = "customers" (bannerClicked)="OnbannerClicked($event)"> </information-badge>
     </div>
     <div class="grid-details-part">
-      <add-customer *ngIf="detailsView == 1"></add-customer>
+      <add-customer *ngIf="detailsView == 1" (statusOfAdd) = "onAddedSucces($event)"></add-customer>
       <customer-details *ngIf="detailsView == 0" [hide]= "hide" [customerId] = "customerId" [fullname] = "fullName" [position]="position" [country]="country" [activity]="activity"></customer-details>
     </div>
 </div>

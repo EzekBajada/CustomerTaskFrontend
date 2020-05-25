@@ -1,5 +1,10 @@
 export class Customer
 {
+    public ID: number;
+    public FullName: string;
+    public Position: string;
+    public Country: number;
+    public Activity: boolean;
     constructor (
         ID: number,
         FullName: string,
@@ -12,5 +17,12 @@ export class Customer
         */
         Country: number,
         Activity: boolean
-    ) {};
+    ) 
+    {
+       this.ID = ID;
+       this.FullName = FullName;
+       this.Position = Position;
+       this.Country = Country;
+       this.Activity = Activity;  
+    };
 }

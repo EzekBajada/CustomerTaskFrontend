@@ -74,4 +74,13 @@ export class AppComponent implements OnInit
   {
     this.detailsView = 1
   }
+
+  onAddedSucces($event)
+  { 
+    console.log('add status:' + $event)
+    if($event)
+    {
+      this.detailsView = 0
+    }
+  }
 } 
