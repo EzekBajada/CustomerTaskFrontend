@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CustomersService } from '../services/customers-service'
 import { Customer } from '../models/customers-model'
 import { InformationBadgeComponent } from '../information-badge/information-badge-component'
-import { EventEmitter } from 'protractor';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
@@ -12,6 +11,17 @@ export class AppComponent implements OnInit
   customers: Customer[] = [];
   addedCustomers: boolean;
   hide: boolean;
+  customerId: number;
+  fullName: string;
+  position: string;
+  country: string;
+  activity: string; 
+  /* To choose which component to choose
+   0 - Add compoonent
+   1 - View Details component
+   2 - Edit Details component
+  */
+  detailsView: number = 0;
   constructor(private customerService: CustomersService) {}
   
   ngOnInit()
@@ -34,70 +44,34 @@ export class AppComponent implements OnInit
       }
     )
   }
+
   OnbannerClicked($event)
   {
-    console.log($event)
-  }
-  getCustomers() : Customer
-  {
-    return this.customerService
-      .GetCustomer(2)
-      .subscribe(
-        (data) => 
+    this.detailsView = 0
+    this.hide = true;
+    this.customerService.GetCustomer($event).subscribe(
+      (data) =>
+      {
+        this.fullName = data['fullName']
+        this.position = data['position']
+        switch(data['country'])
         {
-          console.log(data)
-        }, 
-        (error) => 
-        { 
-          console.log(error.error)
-        });
+            case 1: this.country = 'Malta'; break;
+            case 2: this.country = 'England'; break;
+            case 3: this.country = 'Italy'; break;
+            case 4: this.country = 'Greece'; break;
+        }
+        if(data['activity']) { this.activity = 'Active'} else { this.activity = 'Not Active'} 
+      },
+      (error) =>
+      {
+
+      }
+    )
   }
 
-  addCustomer(customer: Customer)
+  onPlusClick()
   {
-    return this.customerService
-      .AddCustomer(customer)
-      .subscribe(
-        (data) => 
-        {
-          console.log(data)
-        },
-        (error) =>
-        {
-          console.log(error.error)
-        }
-      )
-  }
-
-  editCustomer(customer: Customer) : any
-  {
-    return this.customerService
-      .EditCustomer(customer)
-      .subscribe(
-        (data) => 
-        {
-          console.log(data)
-        },
-        (error) =>
-        {
-          console.log(error.error)
-        }
-      )
-  }
-
-  deleteCustomer(id: number)
-  {
-    return this.customerService
-      .DeleteCustomer(id)
-      .subscribe(
-        (data) => 
-        {
-          console.log(data)
-        },
-        (error) =>
-        {
-          console.log(error.error)
-        }
-      )
+    this.detailsView = 1
   }
 } 

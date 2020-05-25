@@ -9,20 +9,22 @@ import { Observable, throwError } from 'rxjs';
 })
 export class CustomerDetailsComponent implements OnInit
 {
-    @Input() hide : boolean = false;
     imageSrc: any
-    fullname: string;
-    position: string;
-    country: string;
-    activity: string;
-    constructor() {
+    @Input() hide : boolean = false;
+    @Input() customerId: number;
+    @Input() fullname: string;
+    @Input() position: string;
+    @Input() country: string;
+    @Input() activity: string;
+    constructor(private customerService: CustomersService) {
         this.imageSrc = './assets/images/apply_soap_hands_wash_clean_icon_143150 (1).ico'
         this.fullname = 'not defined yet'
         this.position = 'not defined yet'
         this.country = 'Malta'
         this.activity = 'Active'
     }
-    ngOnInit() {
-
+    ngOnInit() { 
+      console.log('pressed')
     }
+   
 }

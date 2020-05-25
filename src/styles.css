@@ -11,13 +11,13 @@
 }
 .inside-banner{
     transition: all 0.2s ease-in-out;
+    padding: 10px;
 }
 
 .inside-banner:hover {
     background-color: green;
     opacity: 60%;
     cursor: pointer;
-    padding: 10px;
     transition: all 0.2s ease-in-out;
 }
 
@@ -25,8 +25,6 @@
     font-size: 25px;
     font-weight: 600;
     margin-left: 7%;
-    
-    
 }
 
 #banner-line-two {

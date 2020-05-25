@@ -14,7 +14,7 @@ export class CustomersService
     
     // GET Customer information
     GetCustomer(customerId : number): Observable<Customer>{
-        const url = environment.apiURL + '/customers/' + customerId;
+        const url = environment.apiURL + '/GetCustomer/' + customerId;
         return this.httpClient.get(url)
     }
 
