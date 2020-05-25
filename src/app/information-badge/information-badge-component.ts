@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CustomersService } from '../services/customers-service'
 import { Customer } from '../models/customers-model'
 import { Observable, throwError } from 'rxjs';
@@ -10,31 +10,30 @@ import { Observable, throwError } from 'rxjs';
 export class InformationBadgeComponent implements OnInit
 {
   constructor(private customerService: CustomersService) {}
-
+  
   imageSrc: any;
-  customerID : number;
-  fullname: string;
-  position: string;
-  hide: boolean = true;
+  @Input() customerID : number;
+  @Input() customers: Customer[] = [];
+  @Output() bannerClicked = new EventEmitter<number>();
   
   ngOnInit(){
     this.imageSrc = 'assets/images/apply_soap_hands_wash_clean_icon_143150 (1).ico'
-    this.fullname = 'not yet defined'
-    this.position = 'not yet defined'
-    console.log(this.hide)
   }
-
-  onClickIcon()
+  
+  onClickIcon(customerID: number)
   {
-    this.customerService.DeleteCustomer(this.customerID)
+    this.customerService.DeleteCustomer(customerID)
     .subscribe(
       (data) => {
-        this.hide = false;
+        location.reload();
       },
       (error) => {
-        this.hide = true;
-        console.log('was not deleted')
       }
       );
+  }
+
+  OnbannerClicked(customerId: number)
+  {
+    this.bannerClicked.emit(customerId);
   }
 }

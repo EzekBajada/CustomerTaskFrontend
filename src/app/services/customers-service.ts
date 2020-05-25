@@ -38,4 +38,18 @@ export class CustomersService
         const url = environment.apiURL + '/DeleteCustomers/' + id
         return this.httpClient.get(url)
     }
+
+    // ADD some dummy data
+    AddSomeCustomers() : Observable<Customer>
+    {
+        const url = environment.apiURL + '/AddSomecustomers'
+        return this.httpClient.get(url)
+    }
+
+    // GET all customers
+    GetAllCustomers() : any
+    {
+        const url = environment.apiURL + '/Allcustomers'
+        return this.httpClient.get(url)
+    }
 }

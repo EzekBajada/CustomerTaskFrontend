@@ -1,6 +1,8 @@
-<div class="banner" *ngIf = "hide">
+<div class="banner" *ngFor = "let customer of customers" (click)="OnbannerClicked(customer.id)">
+  <div class="inside-banner">
     <img src="{{ imageSrc }}" class="banner-image">
-   <div id = "banner-line-one"><span > {{fullname}} </span> <a href="#"> <i class="fa fas fa-trash" id ="trash-icon" (click)="onClickIcon()"></i> </a> </div> 
-     <br> 
-   <div id="banner-line-two">  <span> {{position}} at Thynk Software </span></div> 
+    <div id = "banner-line-one"><span > {{customer.fullName}} </span> <a href="#"> <i class="fa fas fa-trash" id ="trash-icon" (click)="onClickIcon(customer.id)"></i> </a> </div> 
+      <br> 
+    <div id="banner-line-two">  <span> {{customer.position}} at Thynk Software </span></div> 
+  </div>  
 </div>

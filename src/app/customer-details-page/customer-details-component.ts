@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CustomersService } from '../services/customers-service'
 import { Customer } from '../models/customers-model'
 import { Observable, throwError } from 'rxjs';
@@ -9,7 +9,7 @@ import { Observable, throwError } from 'rxjs';
 })
 export class CustomerDetailsComponent implements OnInit
 {
-    hide : boolean = true;
+    @Input() hide : boolean = false;
     imageSrc: any
     fullname: string;
     position: string;
