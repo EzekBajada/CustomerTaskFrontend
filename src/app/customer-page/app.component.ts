@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CustomersService } from '../services/customers-service'
 import { Customer } from '../models/customers-model'
 import { InformationBadgeComponent } from '../information-badge/information-badge-component'
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
@@ -17,6 +17,7 @@ export class AppComponent implements OnInit
   position: string;
   country: string;
   activity: string;
+  imageSrcDetails: SafeResourceUrl;
   /* To choose which component to choose
    0 - Add compoonent
    1 - View Details component
@@ -35,6 +36,7 @@ export class AppComponent implements OnInit
             {
               let imageSrc = (this.domSanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(imageData)))
               element.imageName = imageSrc
+              this.imageSrcDetails = imageSrc
             }
           )
           this.customers.push(element)
@@ -74,6 +76,13 @@ export class AppComponent implements OnInit
             case 4: this.country = 'Greece'; break;
         }
         if(data['activity']) { this.activity = 'Active'} else { this.activity = 'Not Active'} 
+        this.customerService.GetImageFromName(data['imageName']).subscribe(
+          (imageData)=>
+          {
+            let imageSrc = (this.domSanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(imageData)))
+            this.imageSrcDetails = imageSrc
+          }
+        )
       },
       (error) =>
       {

@@ -9,20 +9,21 @@ import { Observable, throwError } from 'rxjs';
 })
 export class EditDetailsComponent implements OnInit
 {
-    constructor(private customerService: CustomersService) { }
+    constructor(private customerService: CustomersService) { 
+      this.imageSrc = './assets/images/main-pfp.ico'
 
-    imageSrc: any
-    
+    }
+
+    @Input() imageSrc: any
     @Input() customerId: number;
     @Input() fullname: string;
     @Input() position: string;
     @Input() country: string;
     @Input() activity: string;
-
     @Output() statusOfEdit = new EventEmitter<boolean>();
     @Output() statusOfDelete = new EventEmitter<boolean>();
+    imageFileSelected: File;
     ngOnInit() { 
-        this.imageSrc = './assets/images/apply_soap_hands_wash_clean_icon_143150 (1).ico'
     }
 
     editCustomerDetails(fullname: any, position: any, country: any, activity: any)
@@ -48,18 +49,22 @@ export class EditDetailsComponent implements OnInit
         else {
           acitivityBool = null
         }
-        let customer = new Customer (this.customerId, fullname.value, position.value, countryId, acitivityBool, " ");
+        let customer = new Customer (this.customerId, fullname.value, position.value, countryId, acitivityBool, this.imageFileSelected.name);
         this.customerService.EditCustomer(customer).subscribe(
             (data) => 
             {
-                this.statusOfEdit.emit(true);
-                location.reload();
+              this.statusOfEdit.emit(true);
+              location.reload();
             },
             (error) => 
             {
                 this.statusOfEdit.emit(false);
             }
         )
+        this.customerService.UploadImage(this.imageFileSelected).subscribe(
+          (data) => {
+          }
+        ) 
     }
 
   onClickTrashIcon()
@@ -74,5 +79,14 @@ export class EditDetailsComponent implements OnInit
         this.statusOfEdit.emit(false);
       }
       );
+  }
+
+  OnFileSelect($event)
+  {
+    if($event.target.files[0].type === 'image/x-icon')
+    {
+     
+      this.imageFileSelected = $event.target.files[0]
+    }
   }
 }

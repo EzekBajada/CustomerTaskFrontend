@@ -6,7 +6,7 @@
     <div id="customer-details" *ngIf = "hide">
         <div id="top-details">
             <div id="edit-delete-icons"><span><i class="fa fas fa-edit" id ="edit-icon" (click)="onClickEditIcon()"></i></span><span> <i class="fa fas fa-trash" id = "edit-icon" (click) = "onClickTrashIcon()"></i> </span></div>
-            <img src = "{{imageSrc}}" class="details-images">
+            <img [src] = "imageSrc" class="details-images">
             <h1 id="fullname-details"> {{fullname}} </h1> 
             <h2 id="position-details"> {{position}} </h2>
             <h3 id="heading-details">Country</h3>

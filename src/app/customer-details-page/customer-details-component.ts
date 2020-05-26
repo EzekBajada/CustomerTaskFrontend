@@ -9,7 +9,7 @@ import { Observable, throwError } from 'rxjs';
 })
 export class CustomerDetailsComponent implements OnInit
 {
-    imageSrc: any
+    @Input() imageSrc: any
     @Input() hide : boolean = false;
     @Input() customerId: number;
     @Input() fullname: string;
@@ -18,7 +18,7 @@ export class CustomerDetailsComponent implements OnInit
     @Input() activity: string;
     @Output() triggerEdit = new EventEmitter<boolean>()
     constructor(private customerService: CustomersService) {
-        this.imageSrc = './assets/images/apply_soap_hands_wash_clean_icon_143150 (1).ico'
+        this.imageSrc = './assets/images/main-pfp.ico'
         this.fullname = 'not defined yet'
         this.position = 'not defined yet'
         this.country = 'Malta'

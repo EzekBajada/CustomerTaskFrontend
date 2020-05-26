@@ -47,6 +47,7 @@ export class AddCustomerComponent implements OnInit
       this.customerService.AddCustomer(customer).subscribe(
           (data) =>
           {
+            location.reload();
             this.statusOfAdd.emit(true); 
           },
           (error) => {
@@ -55,7 +56,6 @@ export class AddCustomerComponent implements OnInit
       )
       this.customerService.UploadImage(this.fileSelected).subscribe(
         (data) => {
-          location.reload();
         }
       ) 
   }

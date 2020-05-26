@@ -8,8 +8,8 @@
         <information-badge  [customers] = "customers" (bannerClicked)="OnbannerClicked($event)"> </information-badge>
     </div>
     <div class="grid-details-part">
-      <customer-details *ngIf="detailsView == 0" (triggerEdit)="onTriggerEdit($event)" [hide]= "hide" [customerId] = "customerId" [fullname] = "fullName" [position]="position" [country]="country" [activity]="activity"></customer-details>
+      <customer-details *ngIf="detailsView == 0" (triggerEdit)="onTriggerEdit($event)" [hide]= "hide" [customerId] = "customerId" [fullname] = "fullName" [position]="position" [country]="country" [activity]="activity" [imageSrc]="imageSrcDetails"></customer-details>
       <add-customer *ngIf="detailsView == 1" (statusOfAdd) = "onAddedSucces($event)"></add-customer>
-      <edit-details *ngIf="detailsView == 2" [customerId] = "customerId" [fullname] = "fullName" [position]="position" [country]="country" [activity]="activity"> </edit-details>
+      <edit-details *ngIf="detailsView == 2" [customerId] = "customerId" [fullname] = "fullName" [position]="position" [country]="country" [activity]="activity" [imageSrc]="imageSrcDetails"> </edit-details>
     </div>
 </div>
