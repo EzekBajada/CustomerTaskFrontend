@@ -1,11 +1,20 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { CustomersService } from '../services/customers-service'
-import { Customer } from '../models/customers-model'
-import { InformationBadgeComponent } from '../information-badge/information-badge-component'
+import { Component, OnInit, Output, EventEmitter, ɵConsole } from '@angular/core';
+import { CustomersService } from '../services/customers-service';
+import { Customer } from '../models/customers-model';
+import { InformationBadgeComponent } from '../information-badge/information-badge-component';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { trigger, transition, style, animate } from '@angular/animations';
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  animations: [
+    trigger('fade', [
+      transition('void => *', [
+        style({opacity: 0}),
+        animate(1000)
+      ])
+    ])
+  ]
 })
 export class AppComponent implements OnInit
 {
@@ -16,102 +25,109 @@ export class AppComponent implements OnInit
   fullName: string;
   position: string;
   country: string;
+  countryId: string;
   activity: string;
   imageSrcDetails: SafeResourceUrl;
+  imageName: string;
   /* To choose which component to choose
    0 - Add compoonent
    1 - View Details component
    2 - Edit Details component
   */
-  detailsView: number = 0;
+  detailsView = 0;
   constructor(private customerService: CustomersService, private domSanitizer: DomSanitizer) {}
-  
+
   ngOnInit()
   {
     this.customerService.GetAllCustomers().subscribe(
       (data) => {
         data.forEach(element => {
           this.customerService.GetImageFromName(element.imageName).subscribe(
-            (imageData)=>
+            (imageData) =>
             {
-              let imageSrc = (this.domSanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(imageData)))
-              element.imageName = imageSrc
-              this.imageSrcDetails = imageSrc
+              const imageSrc = (this.domSanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(imageData)));
+              element.imageName = imageSrc;
+              this.imageSrcDetails = imageSrc;
             }
-          )
-          this.customers.push(element)
-          console.log(element)
+          );
+          this.customers.push(element);
         });
       },
-      (error) =>
-      {
+      (error) => {
       }
-    )
-    if(this.customers.length == 0)
+    );
+    if (this.customers.length === 0)
     {
       this.customerService.AddSomeCustomers().subscribe(
-        (data)=> {
+        (data) => {
         },
         (error) => {
         }
-      )
+      );
     }
   }
 
   OnbannerClicked($event)
   {
-    this.detailsView = 0
+    this.detailsView = 0;
     this.hide = true;
     this.customerService.GetCustomer($event).subscribe(
       (data) =>
       {
-        this.customerId = data['id'] 
-        this.fullName = data['fullName']
-        this.position = data['position']
-        switch(data['country'])
+        /* tslint:disable:no-string-literal */
+        this.customerId = data['id'];
+        this.fullName = data['fullName'];
+        this.position = data['position'];
+        switch (data['country'])
         {
-            case 1: this.country = 'Malta'; break;
-            case 2: this.country = 'England'; break;
-            case 3: this.country = 'Italy'; break;
-            case 4: this.country = 'Greece'; break;
+            case 0: this.country = 'Malta'; break;
+            case 1: this.country = 'England'; break;
+            case 2: this.country = 'Italy'; break;
+            case 3: this.country = 'Greece'; break;
         }
-        if(data['activity']) { this.activity = 'Active'} else { this.activity = 'Not Active'} 
+        this.countryId = data['country'].toString();
+        if (data['activity']) {
+          this.activity = 'Active';
+        } else {
+          this.activity = 'Not Active';
+        }
+        this.imageName = data['imageName'];
         this.customerService.GetImageFromName(data['imageName']).subscribe(
-          (imageData)=>
+          (imageData) =>
           {
-            let imageSrc = (this.domSanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(imageData)))
-            this.imageSrcDetails = imageSrc
+            const imageSrc = (this.domSanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(imageData)));
+            this.imageSrcDetails = imageSrc;
           }
-        )
+        );
+        /* tslint:enable:no-string-literal */
       },
       (error) =>
       {
 
       }
-    )
+    );
   }
 
   onPlusClick()
   {
-    this.detailsView = 1
+    this.detailsView = 1;
   }
 
   onAddedSucces($event)
-  { 
-    console.log('add status:' + $event)
-    if($event)
+  {
+    if ($event)
     {
-      this.detailsView = 0
+      this.detailsView = 0;
     }
   }
 
   onTriggerEdit($event)
   {
-    if($event)
+    if ($event)
     {
-      this.detailsView = 2
+      this.detailsView = 2;
     }
     console.log(this.fullName);
   }
+}
 
-} 

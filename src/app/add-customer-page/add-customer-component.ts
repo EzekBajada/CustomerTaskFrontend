@@ -1,10 +1,11 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { CustomersService } from '../services/customers-service'
-import { Customer } from '../models/customers-model'
-import { InformationBadgeComponent } from '../information-badge/information-badge-component'
-import { count } from 'rxjs/operators';
+import { CustomersService } from '../services/customers-service';
+import { Customer } from '../models/customers-model';
+import { InformationBadgeComponent } from '../information-badge/information-badge-component';
+import {NotificationService} from '../services/notification.service';
+
 @Component({
-  selector: 'add-customer',
+  selector: 'app-add-customer',
   templateUrl: './add-customer-component.html'
 })
 export class AddCustomerComponent implements OnInit
@@ -12,72 +13,76 @@ export class AddCustomerComponent implements OnInit
   imageSrc: string;
   fullName: string;
   fileSelected: File;
-  @Input() ID: number;
-  @Output() statusOfAdd = new EventEmitter<boolean>();
 
-  constructor(private customerService: CustomersService) {}
-  ngOnInit()
-  {
-    this.imageSrc = './assets/images/Designcontest-Outline-Pencil.ico'
-    this.fullName = ''
+  @Input() customerId: number;
+
+  constructor(private customerService: CustomersService, private notifyService: NotificationService) {
+    this.imageSrc = './assets/images/pencil.ico';
+    this.fullName = '';
   }
+
+  ngOnInit() { }
 
   addCustomerDetails(fullname: any, position: any, country: any, activity: any)
   {
-      let countryId;
-      switch(country.value)
+      if (fullname.value === '')
       {
-          case 'Malta': countryId = 0; break;
-          case 'England': countryId = 1; break;
-          case 'Italy': countryId = 2; break;
-          case 'Greece': countryId = 3; break;
+        this.notifyService.showError('Invalid FullName!', 'FullName cannot be left empty');
       }
+
+      if (position.value === '')
+      {
+        this.notifyService.showError('Invalid Position!', 'Position cannot be left empty');
+      }
+
+      let filename;
+      if (!this.fileSelected)
+      {
+        this.notifyService.showError('No Avatar', 'an avatar must be set');
+        filename = '';
+      } else {
+        filename = this.fileSelected.name;
+      }
+
       let activityBool;
-      if(activity.value === 'active' || activity.value === 'Active'){
-        activityBool = true
+      if (activity.value === 'active')
+      {
+        activityBool = true;
+      } else if (activity.value === 'not-active') {
+        activityBool = false;
       }
-      else if (activity.value === 'Not Active' || activity.value === 'not active') {
-        activityBool = false
-      }
-      else {
-        activityBool = null
-      }
-      let customer = new Customer(this.ID,fullname.value, position.value, countryId, activityBool, this.fileSelected.name)
-      console.log(customer)
+
+      const customer = new Customer(this.customerId, fullname.value, position.value, +country.value, activityBool, filename);
       this.customerService.AddCustomer(customer).subscribe(
-          (data) =>
-          {
+          (data) => {
+            this.notifyService.showSuccess('Customer Added!', '');
             location.reload();
-            this.statusOfAdd.emit(true); 
           },
           (error) => {
-            this.statusOfAdd.emit(false);  
-          }
-      )
+            this.notifyService.showError('Server Failed!', 'Try Again');
+          });
+
       this.customerService.UploadImage(this.fileSelected).subscribe(
-        (data) => {
-        }
-      ) 
+          (data) => { }
+      );
   }
 
-  onClickTrashIcon(fullNameEvent: any,positionEvent: any, CountryEvent: any, ActivityEvent: any)
+  onClickTrashIcon(fullNameEvent: any, positionEvent: any, CountryEvent: any, ActivityEvent: any)
   {
-    fullNameEvent.value = ' '
-    positionEvent.value = ' '
-    CountryEvent.value = ' '
-    ActivityEvent.value = ' '
+    fullNameEvent.value = ' ';
+    positionEvent.value = ' ';
+    CountryEvent.value = ' ';
+    ActivityEvent.value = ' ';
   }
 
   OnFileSelect($event){
-    if($event.target.files[0].type === 'image/x-icon')
+    if ($event.target.files[0].type === 'image/x-icon') {
+      this.fileSelected = $event.target.files[0];
+      this.notifyService.showInfo('Image Uploaded', '');
+    }
+    else
     {
-      // this.customerService.UploadImage($event.target.files[0]).subscribe(
-      //   (data) => {
-      //     console.log(data)
-      //   }
-      // ) 
-      // console.log($event)
-      this.fileSelected = $event.target.files[0]
+      this.notifyService.showError('Invalid File Format', 'Avatar must be of .ico extension');
     }
   }
 }

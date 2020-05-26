@@ -5,6 +5,7 @@
     float: left;
     border-color: coral;
     border-style: solid;
+    margin-right: 2%;
 }
 .banner {
     margin-top: 20px;
@@ -48,9 +49,10 @@
 
 .details-images {
     border-style: solid;
-    border-color: coral;
+    border-color: greenyellow;
     border-radius: 50%;
     height: 100px;
+    margin-top: 2%;
 }
 
 .details-images:hover {
@@ -60,6 +62,7 @@
 
 #customer-details {
     text-align: center;
+    margin-bottom: 5%;
 }
 
 #fullname-details {
@@ -73,7 +76,7 @@
 }
 
 #sub-heading-details {
-    margin:-2%;
+    margin: 1%;
     opacity: 75%;
 }
 
@@ -102,6 +105,7 @@
 
 #country-details-input {
     margin-top: 1%;
+    margin-bottom: 2%;
 }
 
 .grid-container {
@@ -135,4 +139,17 @@ body {
 
 #top-add-info {
     margin-top: 2%;
+    padding: 2%;
+    border-bottom: 5px solid coral;
+}
+
+.text-box-input {
+    border-radius: 25px;
+    border: 2px solid  greenyellow;
+    padding: 5px;
+}
+
+#top-details
+{
+    margin-top: 5%
 }

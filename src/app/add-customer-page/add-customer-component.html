@@ -1,21 +1,30 @@
 <div class = "details">
     <div id="customer-details">
         <div id="top-details">
-            <div id="edit-delete-icons">
-                <span><a href="#"><i class="fa far fa-save" id="edit-icon" (click) = "addCustomerDetails(firstNameInput,positionInput,countryInput,activityInput)"></i></a></span>
-                <span><a href="#"><i class="fa fas fa-trash" id="edit-icon" (click) = "onClickTrashIcon(firstNameInput, positionInput, countryInput, activityInput)"></i></a> </span></div>
+
             <label for="image">
                 <input type="file" (change)="OnFileSelect($event)" name="image" id="image"  style="display:none;"/>
                 <img src="{{imageSrc}}" class="details-images"/>
             </label>
             <br>
-            <input  type="text" id="fullname-details-input" #firstNameInput>
+            <input  type="text" id="fullname-details-input" class="text-box-input" placeholder="Full Name" #firstNameInput>
             <br>
-            <input type="text" id="fullname-details-input" #positionInput>
+            <input type="text" id="fullname-details-input"class="text-box-input" placeholder="Position" #positionInput>
             <h3 id="heading-details">Country</h3>
-            <input type="text" id="country-details-input" #countryInput>
+            <select name="country" id="country-details-input" class="text-box-input" #countryInput>
+                <option value="0">Malta</option>    
+                <option value="1">England</option>    
+                <option value="2">Italy</option>    
+                <option value="3">Greece</option>    
+            </select>
             <h3 id="heading-details">Activity</h3>
-            <input type="text" id="country-details-input" #activityInput>
+            <select name="country" id="country-details-input" class="text-box-input" #activityInput>
+                <option value="active">Active</option>    
+                <option value="not-active">Not Active</option>    
+            </select>
+            <div id="edit-delete-icons">
+                <span><a href="#"><i class="fa far fa-save" id="edit-icon" (click) = "addCustomerDetails(firstNameInput,positionInput,countryInput,activityInput)"></i></a></span>
+                <span><a href="#"><i class="fa fas fa-trash" id="edit-icon" (click) = "onClickTrashIcon(firstNameInput, positionInput, countryInput, activityInput)"></i></a> </span></div>
         </div> 
     </div>
 </div>
