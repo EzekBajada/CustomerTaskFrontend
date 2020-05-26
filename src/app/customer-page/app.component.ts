@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CustomersService } from '../services/customers-service'
 import { Customer } from '../models/customers-model'
 import { InformationBadgeComponent } from '../information-badge/information-badge-component'
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
@@ -15,26 +16,27 @@ export class AppComponent implements OnInit
   fullName: string;
   position: string;
   country: string;
-  activity: string; 
+  activity: string;
   /* To choose which component to choose
    0 - Add compoonent
    1 - View Details component
    2 - Edit Details component
   */
   detailsView: number = 0;
-  constructor(private customerService: CustomersService) {}
+  constructor(private customerService: CustomersService, private domSanitizer: DomSanitizer) {}
   
   ngOnInit()
   {
-    console.log(this.customers.length)
-    if(this.customers.length <= 0)
-    {
-      this.customerService.AddSomeCustomers()
-    }
-
     this.customerService.GetAllCustomers().subscribe(
       (data) => {
         data.forEach(element => {
+          this.customerService.GetImageFromName(element.imageName).subscribe(
+            (imageData)=>
+            {
+              let imageSrc = (this.domSanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(imageData)))
+              element.imageName = imageSrc
+            }
+          )
           this.customers.push(element)
           console.log(element)
         });
@@ -43,6 +45,15 @@ export class AppComponent implements OnInit
       {
       }
     )
+    if(this.customers.length == 0)
+    {
+      this.customerService.AddSomeCustomers().subscribe(
+        (data)=> {
+        },
+        (error) => {
+        }
+      )
+    }
   }
 
   OnbannerClicked($event)

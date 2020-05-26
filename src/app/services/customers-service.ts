@@ -53,4 +53,18 @@ export class CustomersService
         const url = environment.apiURL + '/Allcustomers'
         return this.httpClient.get(url)
     }
+
+    GetImageFromName(fileName: string)
+    {
+        const url = environment.apiURL + '/GetFile/' + fileName
+        return this.httpClient.get(url, {responseType: 'blob'})
+    }
+
+    UploadImage(eventFileChange: File)
+    {
+        let formData = new FormData();
+        formData.append('file', eventFileChange, eventFileChange.name)
+        const url = environment.apiURL + '/UploadFile'
+        return this.httpClient.post(url,formData)
+    }
 }

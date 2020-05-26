@@ -48,7 +48,7 @@ export class EditDetailsComponent implements OnInit
         else {
           acitivityBool = null
         }
-        let customer = new Customer (this.customerId, fullname.value, position.value, countryId, acitivityBool);
+        let customer = new Customer (this.customerId, fullname.value, position.value, countryId, acitivityBool, " ");
         this.customerService.EditCustomer(customer).subscribe(
             (data) => 
             {

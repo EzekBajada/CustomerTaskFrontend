@@ -5,7 +5,7 @@
                 <span><a href="#"><i class="fa far fa-save" id="edit-icon" (click) = "addCustomerDetails(firstNameInput,positionInput,countryInput,activityInput)"></i></a></span>
                 <span><a href="#"><i class="fa fas fa-trash" id="edit-icon" (click) = "onClickTrashIcon(firstNameInput, positionInput, countryInput, activityInput)"></i></a> </span></div>
             <label for="image">
-                <input type="file" name="image" id="image" style="display:none;"/>
+                <input type="file" (change)="OnFileSelect($event)" name="image" id="image"  style="display:none;"/>
                 <img src="{{imageSrc}}" class="details-images"/>
             </label>
             <br>

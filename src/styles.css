@@ -107,6 +107,7 @@
 .grid-container {
     display: grid;
     grid-template-columns: 40% 60% ;
+    transition: all 0.2s ease-in-out;
 }
 
 #plus-icon{

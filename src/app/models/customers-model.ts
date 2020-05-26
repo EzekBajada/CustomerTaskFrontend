@@ -5,6 +5,8 @@ export class Customer
     public Position: string;
     public Country: number;
     public Activity: boolean;
+    public ImageName: string;
+
     constructor (
         ID: number,
         FullName: string,
@@ -16,7 +18,8 @@ export class Customer
         3 - Greece
         */
         Country: number,
-        Activity: boolean
+        Activity: boolean,
+        ImageName: string
     ) 
     {
        this.ID = ID;
@@ -24,5 +27,6 @@ export class Customer
        this.Position = Position;
        this.Country = Country;
        this.Activity = Activity;  
+       this.ImageName = ImageName;
     };
 }

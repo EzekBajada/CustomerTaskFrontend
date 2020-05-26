@@ -11,6 +11,7 @@ export class AddCustomerComponent implements OnInit
 {
   imageSrc: string;
   fullName: string;
+  fileSelected: File;
   @Input() ID: number;
   @Output() statusOfAdd = new EventEmitter<boolean>();
 
@@ -41,18 +42,22 @@ export class AddCustomerComponent implements OnInit
       else {
         activityBool = null
       }
-      let customer = new Customer(this.ID,fullname.value, position.value, countryId, activityBool)
+      let customer = new Customer(this.ID,fullname.value, position.value, countryId, activityBool, this.fileSelected.name)
       console.log(customer)
       this.customerService.AddCustomer(customer).subscribe(
           (data) =>
           {
             this.statusOfAdd.emit(true); 
-            location.reload();
           },
           (error) => {
             this.statusOfAdd.emit(false);  
           }
       )
+      this.customerService.UploadImage(this.fileSelected).subscribe(
+        (data) => {
+          location.reload();
+        }
+      ) 
   }
 
   onClickTrashIcon(fullNameEvent: any,positionEvent: any, CountryEvent: any, ActivityEvent: any)
@@ -61,5 +66,18 @@ export class AddCustomerComponent implements OnInit
     positionEvent.value = ' '
     CountryEvent.value = ' '
     ActivityEvent.value = ' '
+  }
+
+  OnFileSelect($event){
+    if($event.target.files[0].type === 'image/x-icon')
+    {
+      // this.customerService.UploadImage($event.target.files[0]).subscribe(
+      //   (data) => {
+      //     console.log(data)
+      //   }
+      // ) 
+      // console.log($event)
+      this.fileSelected = $event.target.files[0]
+    }
   }
 }
