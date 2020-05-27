@@ -128,7 +128,6 @@ export class AppComponent implements OnInit
     {
       this.detailsView = 2;
     }
-    console.log(this.fullName);
   }
 }
 
