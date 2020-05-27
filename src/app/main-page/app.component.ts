@@ -62,7 +62,6 @@ export class AppComponent implements OnInit
         }
       );
     }).then(() => {
-      console.log(this.customers.length);
       if (this.customers.length === 0)
       {
         this.customerService.AddSomeCustomers().subscribe(
