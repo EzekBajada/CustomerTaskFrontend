@@ -31,7 +31,6 @@ export class CustomerDetailsComponent implements OnInit
 
     onClickTrashIcon()
     {
-      console.log(this.customerId);
       this.customerService.DeleteCustomer(this.customerId)
       .subscribe(
         (data) => {
