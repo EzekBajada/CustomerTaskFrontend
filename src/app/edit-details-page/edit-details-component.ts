@@ -7,7 +7,8 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-edit-details',
-  templateUrl: './edit-details-component.html'
+  templateUrl: './edit-details-component.html',
+  styleUrls: ['edit-details-component.css']
 })
 export class EditDetailsComponent implements OnInit
 {

@@ -1,0 +1,41 @@
+.banner {
+    margin-top: 20px;
+}
+
+.inside-banner{
+    transition: all 0.2s ease-in-out;
+    padding: 10px;
+}
+
+.inside-banner:hover {
+    background-color: green;
+    opacity: 60%;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.banner-image {
+    height: 36px;
+    border-radius: 50%;
+    float: left;
+    border-color: coral;
+    border-style: solid;
+    margin-right: 2%;
+}
+
+#banner-line-one {
+    font-size: 25px;
+    font-weight: 600;
+    margin-left: 7%;
+}
+
+#banner-line-two {
+    margin-left: 7%;
+    margin-top: -2%;
+}
+
+#trash-icon {
+    float: right;   
+    opacity: 70%;
+    color: greenyellow;
+}   

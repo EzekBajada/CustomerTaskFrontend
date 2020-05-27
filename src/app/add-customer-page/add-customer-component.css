@@ -1,0 +1,57 @@
+#customer-details {
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+#top-details
+{
+    margin-top: 5%
+}
+
+.details-images {
+    border-style: solid;
+    border-color: greenyellow;
+    border-radius: 50%;
+    height: 100px;
+    margin-top: 2%;
+}
+
+.details-images:hover {
+    opacity: 50%;
+    cursor: pointer;
+}
+
+.fullname-details-input {
+    margin-top: 2%;
+}
+
+.text-box-input {
+    border-radius: 25px;
+    border: 2px solid  greenyellow;
+    padding: 5px;
+}
+
+#country-details-input {
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
+
+.heading-details {
+    padding:1%;
+    margin-bottom: -1%;
+}
+
+.edit-delete-icons {
+    padding-top: 2%;
+    padding-bottom: 20px;
+    padding-left: 40%;
+    font-size: 25px;
+}
+
+.edit-icon {
+    padding-right: 3%;
+    color: greenyellow;
+}
+.edit-icon:hover{
+    cursor: pointer;
+}

@@ -1,7 +1,7 @@
 <div @fade class="grid-container">
     <div class="grid-information-part">
         <div id = "top-add-info"><span class="header-employ"> List of employess </span> <a href="#"> <i class="fa fas fa-plus" id="plus-icon" (click)="onPlusClick()"></i> </a> </div> 
-        <information-badge  [customers] = "customers" (bannerClicked)="OnbannerClicked($event)"> </information-badge>
+        <app-information-badge  [customers] = "customers" (bannerClicked)="OnbannerClicked($event)"> </app-information-badge>
     </div>
     <div class="grid-details-part">
       <app-customer-details *ngIf="detailsView == 0" (triggerEdit)="onTriggerEdit($event)" [hide]= "hide" [customerId] = "customerId" [fullname] = "fullName" [position]="position" [country]="country" [activity]="activity" [imageSrc]="imageSrcDetails"></app-customer-details>
