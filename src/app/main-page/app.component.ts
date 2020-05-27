@@ -4,6 +4,7 @@ import { Customer } from '../models/customers-model';
 import { InformationBadgeComponent } from '../information-badge/information-badge-component';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { rejects } from 'assert';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -40,32 +41,38 @@ export class AppComponent implements OnInit
 
   ngOnInit()
   {
-    this.customerService.GetAllCustomers().subscribe(
-      (data) => {
-        data.forEach(element => {
-          this.customerService.GetImageFromName(element.imageName).subscribe(
-            (imageData) =>
-            {
-              const imageSrc = (this.domSanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(imageData)));
-              element.imageName = imageSrc;
-              this.imageSrcDetails = imageSrc;
-            }
-          );
-          this.customers.push(element);
-        });
-      },
-      (error) => {
-      }
-    );
-    if (this.customers.length === 0)
-    {
-      this.customerService.AddSomeCustomers().subscribe(
+    const promise = new Promise((resolve, reject) => {
+      this.customerService.GetAllCustomers().subscribe(
         (data) => {
+          data.forEach(element => {
+            this.customerService.GetImageFromName(element.imageName).subscribe(
+              (imageData) =>
+              {
+                const imageSrc = (this.domSanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(imageData)));
+                element.imageName = imageSrc;
+                this.imageSrcDetails = imageSrc;
+              }
+            );
+            this.customers.push(element);
+          });
+          resolve();
         },
         (error) => {
+          reject();
         }
       );
-    }
+    }).then(() => {
+      console.log(this.customers.length);
+      if (this.customers.length === 0)
+      {
+        this.customerService.AddSomeCustomers().subscribe(
+          (data) => {
+          },
+          (error) => {
+          }
+        );
+      }
+    });
   }
 
   OnbannerClicked($event)
